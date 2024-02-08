@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Day</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f3f3;
+    overflow: hidden;
+  }
+
+  #content {
+    text-align: center;
+  }
+
+  #yesButton, #noButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+
+  #yesButton {
+    background-color: #28a745;
+    color: white;
+  }
+
+  #noButton {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  #valentineText {
+    margin-top: 20px;
+  }
+
+  #valentineText.styled {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff69b4;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: bounce 0.5s infinite alternate;
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+</style>
+</head>
+<body>
+<div id="content">
+  <img id="valentineGif" src="https://i.pinimg.com/originals/3c/31/ef/3c31efc42b6e4ce96afa55099dfbba25.gif" alt="Will you be my valentine's">
+  <p id="valentineText">Will you be my valentine's?</p>
+  <button id="yesButton">Yes</button>
+  <button id="noButton">No</button>
+</div>
+<script>
+  const yesButton = document.getElementById('yesButton');
+  const noButton = document.getElementById('noButton');
+  const valentineText = document.getElementById('valentineText');
+  const valentineGif = document.getElementById('valentineGif');
+
+  let noButtonClicks = 0;
+  noButton.addEventListener('click', () => {
+    noButtonClicks++;
+    yesButton.style.fontSize = `${16 + noButtonClicks * 4}px`;
+    noButton.style.fontSize = `${Math.max(12, 16 - noButtonClicks * 4)}px`;
+    if (noButtonClicks >= 5) {
+      noButton.style.position = 'absolute';
+      noButton.style.top = `${Math.random() * 90}vh`;
+      noButton.style.left = `${Math.random() * 90}vw`;
+    }
+  });
+
+  yesButton.addEventListener('click', () => {
+    valentineGif.src = "https://i.pinimg.com/originals/43/d1/9f/43d19ffbe4f4d86f8c5f8207764971f9.gif";
+    document.body.style.backgroundImage = 'url("https://cliply.co/wp-content/uploads/2021/09/CLIPLY_372109170_FREE_FIREWORKS_400.gif")';
+    const audio = new Audio('audio.mp3');
+    audio.play();
+    setTimeout(() => {
+      window.location.href = "http://tinyurl.com/h87hkwru";
+    }, 5000);
+    yesButton.style.display = 'none';
+    noButton.style.display = 'none';
+    valentineText.textContent = "Yayyy! You are now my Valentine's";
+    valentineText.classList.add('styled');
+  });
+</script>
+</body>
+</html>
